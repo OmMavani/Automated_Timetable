@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin: 10px 0;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <a href="{%url 'teacher'%}">Teacher</a>
+        <a href="{%url 'addCourse' %}">Course</a>
+        <a href="{%url 'timetable' %}">Timetable</a>
+        <a href="{%url 'generate' %}">Generate Table</a>
+    </nav>
+    {{name}} | {{shortName}}
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Days</th>
+                <th>8:45 to 9:40</th>
+                <th>9:45 to 10:40</th>
+                <th>11 to 11:55</th>
+                <th>12 to 12:55</th>
+                <th>2 to 2:55</th>
+                <th>3 to 3:55</th>
+                <th>4:15 to 5:10</th>
+                <th>5:15 to 6:10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mon</td>
+                {% for i in range %}
+                    <td> 
+                    {% with ii=i|stringformat:'d' %}
+                        {% for j in slotList %}
+                            {% with jj=j.slot|stringformat:'d' %}
+                                {% if ii.0 == jj.1 and jj.0 == '1' %}
+                                {{j.semester}} {{j.div}} {{j.info}} <br>
+                                {% endif %}
+                            {% endwith %}
+                        {% endfor %}
+                    {% endwith %}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Tue</td>
+                {% for i in range %}
+                    <td> 
+                    {% with ii=i|stringformat:'d' %}
+                        {% for j in slotList %}
+                            {% with jj=j.slot|stringformat:'d' %}
+                                {% if ii.0 == jj.1 and jj.0 == '2' %}
+                                {{j.semester}} {{j.div}} {{j.info}} <br>
+                                {% endif %}
+                            {% endwith %}
+                        {% endfor %}
+                    {% endwith %}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Wed</td>
+                {% for i in range %}
+                    <td> 
+                    {% with ii=i|stringformat:'d' %}
+                        {% for j in slotList %}
+                            {% with jj=j.slot|stringformat:'d' %}
+                                {% if ii.0 == jj.1 and jj.0 == '3' %}
+                                {{j.semester}} {{j.div}} {{j.info}} <br>
+                                {% endif %}
+                            {% endwith %}
+                        {% endfor %}
+                    {% endwith %}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Thu</td>
+                {% for i in range %}
+                    <td> 
+                    {% with ii=i|stringformat:'d' %}
+                        {% for j in slotList %}
+                            {% with jj=j.slot|stringformat:'d' %}
+                                {% if ii.0 == jj.1 and jj.0 == '4' %}
+                                {{j.semester}} {{j.div}} {{j.info}} <br>
+                                {% endif %}
+                            {% endwith %}
+                        {% endfor %}
+                    {% endwith %}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Fri</td>
+                {% for i in range %}
+                    <td> 
+                    {% with ii=i|stringformat:'d' %}
+                        {% for j in slotList %}
+                            {% with jj=j.slot|stringformat:'d' %}
+                                {% if ii.0 == jj.1 and jj.0 == '5' %}
+                                {{j.semester}} {{j.div}} {{j.info}} <br>
+                                {% endif %}
+                            {% endwith %}
+                        {% endfor %}
+                    {% endwith %}
+                    </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

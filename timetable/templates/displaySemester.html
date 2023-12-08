@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin: 10px 0;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+
+        form {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <a href="{%url 'teacher'%}">Teacher</a>
+        <a href="{%url 'addCourse' %}">Course</a>
+        <a href="{%url 'timetable' %}">Timetable</a>
+        <a href="{%url 'generate' %}">Generate Table</a>
+    </nav>
+    <form method="post" action="{% url 'displaySemester' %}">
+        {% csrf_token %}
+        <label> Semester  </label> &nbsp&nbsp 
+        <select name="semester">
+            {% for i in semester %}
+                <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+        </select> &nbsp&nbsp&nbsp
+        <label> Divison  </label> &nbsp&nbsp 
+        <select name="div">
+            {% for i in div %}
+                <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+        </select> <br><br>
+        <input type="submit">
+    </form>
+</body>
+</html>
